@@ -9,16 +9,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ivory:#F6EFE4;
-    --ivory-soft:#FBF7EF;
-    --ink:#241713;
-    --ink-soft:#241713b3;
-    --wine:#5B1F3D;
-    --wine-deep:#3E1329;
-    --gold:#B98B33;
-    --gold-soft:#D8B876;
+    --ivory:#E7E5DF;
+    --ivory-soft:#F0EEE8;
+    --ink:#201E1B;
+    --ink-soft:#201E1Bb3;
+    --wine:#2C9FB5;
+    --wine-deep:#1B6B7A;
+    --gold:#57B8C9;
+    --gold-soft:#8ED2DE;
     --clay:#9C4A2E;
-    --blush:#EAD9C8;
+    --blush:#DCEEF1;
     --line: rgba(36,23,19,0.14);
     --radius: 2px;
     --shadow: 0 30px 60px -20px rgba(36,23,19,0.35);
@@ -105,7 +105,7 @@
   }
   .hero::before{
     content:""; position:absolute; inset:0;
-    background:linear-gradient(180deg, rgba(20,10,8,0.55) 0%, rgba(20,10,8,0.35) 40%, rgba(20,10,8,0.75) 100%);
+    background:linear-gradient(180deg, rgba(44,159,181,0.5) 0%, rgba(27,107,122,0.4) 40%, rgba(20,54,60,0.8) 100%);
   }
   .hero-inner{ position:relative; z-index:2; max-width:640px; }
   .hero .eyebrow{ color:var(--gold-soft); margin-bottom:18px; display:block; }
@@ -137,7 +137,7 @@
     background-size:cover; background-position:center; padding:130px 20px 120px;
   }
   .wizard::before{
-    content:""; position:absolute; inset:0; background:rgba(20,10,8,0.5);
+    content:""; position:absolute; inset:0; background:rgba(20,54,60,0.5);
   }
   .card{
     position:relative; z-index:2; width:100%; max-width:560px;
@@ -244,7 +244,7 @@
     position:relative; min-height:60vh; display:flex; align-items:center; justify-content:center;
     background-size:cover; background-position:center; text-align:center; padding:130px 24px 60px;
   }
-  .bridal-hero::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,10,8,0.55), rgba(246,239,228,1)); }
+  .bridal-hero::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(27,107,122,0.6), rgba(231,229,223,1)); }
   .bridal-hero-inner{ position:relative; z-index:2; max-width:600px; }
   .bridal-hero h1{ font-size:clamp(32px,5vw,48px); color:#fff; }
   .bridal-hero p{ color:var(--blush); font-family:'Fraunces',serif; font-style:italic; margin-top:14px; font-size:16px; }
@@ -354,12 +354,13 @@
       { id:"name", title:"Let's start with your name.", type:"name" },
       { id:"email", title:"What's the best email to reach you?", type:"email" },
       { id:"phone", title:"And a phone number?", type:"phone" },
-      { id:"eventDate", title:"When is your event?", type:"date", key:"eventDate" },
+      { id:"eventDate", title:"What's your deadline date?", type:"date", key:"eventDate" },
       { id:"consultation", title:"How would you like your first consultation?", type:"consultation" },
       { id:"description", title:"Describe the dress you're dreaming of.", hint:"Silhouette, fabric, color, neckline, inspiration — whatever comes to mind.", type:"textarea", key:"description" },
       { id:"photos", title:"Share up to 3 inspiration photos.", hint:"Screenshots, magazine photos, or moodboards all work.", type:"photos" },
       { id:"size", title:"What's your current size?", hint:"Your everyday size is fine — we'll confirm exact measurements at your consultation.", type:"size" },
       { id:"budget", title:"What's your budget range for this piece?", type:"budget" },
+      { id:"delivery", title:"Would you like to pick up your piece, or have it shipped?", type:"delivery" },
       { id:"source", title:"How did you find Purda?", type:"source" },
       { id:"review", title:"Review your inquiry", type:"review" }
     ];
@@ -367,7 +368,7 @@
 
   const state = {
     activeCategory: "prom",
-    wizard: { stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",eventDate:"",consultation:"",description:"",size:"",budget:"",source:"" }, photos:[] },
+    wizard: { stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",eventDate:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] },
     submitting:false
   };
 
@@ -427,7 +428,7 @@
 
             <div class="section-label">Your Event</div>
             <div class="field-row">
-              <div class="field"><label for="b-date">Wedding Date *</label><input id="b-date" required type="date"></div>
+              <div class="field"><label for="b-date">Deadline Date *</label><input id="b-date" required type="date"></div>
               <div class="field"><label for="b-loc">Wedding Location *</label><input id="b-loc" required type="text" placeholder="City, State or Venue"></div>
             </div>
             <div class="field">
@@ -460,6 +461,14 @@
               </div>
             </div>
             <div class="field">
+              <label for="b-delivery">Pickup or Shipping? *</label>
+              <select id="b-delivery" required>
+                <option value="">Select one</option>
+                <option>Pickup — Marietta, GA</option>
+                <option>Shipped</option>
+              </select>
+            </div>
+            <div class="field">
               <label for="b-source">How did you find us? *</label>
               <select id="b-source" required>
                 <option value="">Select one</option>
@@ -482,7 +491,7 @@
 
     document.getElementById("bridalForm").addEventListener("submit", async (e)=>{
       e.preventDefault();
-      const required = ["b-first","b-last","b-email","b-phone","b-date","b-loc","b-consult","b-size","b-budget","b-source"];
+      const required = ["b-first","b-last","b-email","b-phone","b-date","b-loc","b-consult","b-size","b-budget","b-delivery","b-source"];
       let valid = true;
       required.forEach(id=>{ const el=document.getElementById(id); if(!el.value){ valid=false; el.style.borderColor="#9C4A2E"; } });
       if(state.wizard.photos.length === 0) valid = false;
@@ -501,6 +510,7 @@
         weddingDate:document.getElementById("b-date").value,
         weddingLocation:document.getElementById("b-loc").value,
         consultation:document.getElementById("b-consult").value,
+        delivery:document.getElementById("b-delivery").value,
         description:document.getElementById("b-desc").value,
         size:document.getElementById("b-size").value,
         budget:document.getElementById("b-budget").value,
@@ -515,7 +525,7 @@
   function renderWizardShell(cat){
     const steps = getSteps(cat);
     if(state.wizard.category !== cat.key){
-      state.wizard = { category:cat.key, stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",eventDate:"",consultation:"",description:"",size:"",budget:"",source:"" }, photos:[] };
+      state.wizard = { category:cat.key, stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",eventDate:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] };
     }
     if(state.wizard.stepIndex === 0){
       renderHero(cat);
@@ -633,7 +643,7 @@
         document.getElementById("w-phone").addEventListener("input",e=>d.phone=e.target.value);
         break;
       case "date":
-        body.innerHTML = `<div class="field"><label for="w-date">Event Date</label><input id="w-date" type="date" value="${d.eventDate}"></div>`;
+        body.innerHTML = `<div class="field"><label for="w-date">Deadline Date</label><input id="w-date" type="date" value="${d.eventDate}"></div>`;
         document.getElementById("w-date").addEventListener("input",e=>d.eventDate=e.target.value);
         break;
       case "consultation":
@@ -675,6 +685,18 @@
           </div>`;
         wireChoiceGroup(body, "budget", d);
         break;
+      case "delivery":
+        body.innerHTML = `
+          <div class="choice-grid stack">
+            <button type="button" class="choice" data-val="Pickup — Marietta, GA">
+              <strong>Pickup</strong><span>Pick up your finished piece from our studio in Marietta, GA</span>
+            </button>
+            <button type="button" class="choice" data-val="Shipped">
+              <strong>Shipped</strong><span>Have it shipped to you — a flat $25 delivery fee applies</span>
+            </button>
+          </div>`;
+        wireChoiceGroup(body, "delivery", d);
+        break;
       case "source":
         body.innerHTML = `
           <div class="choice-grid">
@@ -689,12 +711,13 @@
             <li><span class="k">Name</span><span class="v">${d.firstName} ${d.lastName}</span></li>
             <li><span class="k">Email</span><span class="v">${d.email}</span></li>
             <li><span class="k">Phone</span><span class="v">${d.phone}</span></li>
-            <li><span class="k">Event Date</span><span class="v">${d.eventDate}</span></li>
+            <li><span class="k">Deadline Date</span><span class="v">${d.eventDate}</span></li>
             <li><span class="k">Consultation</span><span class="v">${d.consultation}</span></li>
             <li><span class="k">Description</span><span class="v">${d.description || '—'}</span></li>
             <li><span class="k">Photos</span><span class="v">${photosLabel}</span></li>
             <li><span class="k">Size</span><span class="v">${d.size}</span></li>
             <li><span class="k">Budget</span><span class="v">${d.budget}</span></li>
+            <li><span class="k">Pickup/Shipping</span><span class="v">${d.delivery}</span></li>
             <li><span class="k">Found us via</span><span class="v">${d.source}</span></li>
           </ul>`;
         break;
@@ -720,11 +743,12 @@
       case "name": ok = d.firstName.trim() && d.lastName.trim(); msg="Please enter your first and last name."; break;
       case "email": ok = /.+@.+\..+/.test(d.email); msg="Please enter a valid email."; break;
       case "phone": ok = d.phone.trim().length >= 7; msg="Please enter a valid phone number."; break;
-      case "date": ok = !!d.eventDate; msg="Please choose your event date."; break;
+      case "date": ok = !!d.eventDate; msg="Please choose your deadline date."; break;
       case "consultation": ok = !!d.consultation; msg="Please choose a consultation type."; break;
       case "photos": ok = state.wizard.photos.length > 0; msg="Please add at least one inspiration photo."; break;
       case "size": ok = d.size.trim().length > 0; msg="Please enter your size."; break;
       case "budget": ok = !!d.budget; msg="Please select a budget range."; break;
+      case "delivery": ok = !!d.delivery; msg="Please choose pickup or shipping."; break;
       case "source": ok = !!d.source; msg="Please tell us how you found us."; break;
       default: ok = true;
     }
@@ -797,6 +821,7 @@
       category: cat.label,
       firstName:d.firstName, lastName:d.lastName, email:d.email, phone:d.phone,
       eventDate:d.eventDate, consultation:d.consultation, description:d.description,
+      delivery:d.delivery,
       size:d.size, budget:d.budget, source:d.source
     };
     await submitInquiry(payload, btn, statusEl, cat.key);
@@ -830,7 +855,7 @@
       }
       showThankYou(CATEGORIES[catKey]);
     } catch(err){
-      statusEl.textContent = "Something went wrong sending your inquiry. Please try again, or text us directly at (470) 625-2909.";
+      statusEl.textContent = "Something went wrong sending your inquiry. Please try again, or email us directly at purdadesigns@gmail.com.";
       statusEl.className = "status-msg error show";
       btnEl.disabled = false;
       btnEl.textContent = originalLabel;
@@ -848,7 +873,7 @@
             <span class="eyebrow" style="color:var(--wine);">Inquiry Received</span>
             <h2>Thank you, we can't wait to create with you.</h2>
             <p>Your ${cat.label.toLowerCase()} inquiry has been sent to our team. We personally review every submission and typically respond within 1–2 business days with a price estimate and next steps.</p>
-            <p style="margin-top:14px;">Have an urgent question in the meantime? Text us at <strong>(470) 625-2909</strong>.</p>
+            <p style="margin-top:14px;">Have an urgent question in the meantime? Email us at <strong>purdadesigns@gmail.com</strong>.</p>
             <button class="btn-primary" id="restartBtn">Back to Purda</button>
           </div>
         </div>
@@ -857,7 +882,7 @@
     `;
     document.getElementById("restartBtn").addEventListener("click", ()=>{
       state.activeCategory = "prom";
-      state.wizard = { stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",eventDate:"",consultation:"",description:"",size:"",budget:"",source:"" }, photos:[] };
+      state.wizard = { stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",eventDate:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] };
       render();
     });
     bindTabs();
@@ -869,7 +894,7 @@
       btn.addEventListener("click", ()=>{
         state.activeCategory = btn.dataset.cat;
         if(CATEGORIES[state.activeCategory].layout === "steps"){
-          state.wizard = { category: state.activeCategory, stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",eventDate:"",consultation:"",description:"",size:"",budget:"",source:"" }, photos:[] };
+          state.wizard = { category: state.activeCategory, stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",eventDate:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] };
         }
         render();
       });

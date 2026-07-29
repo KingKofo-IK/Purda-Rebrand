@@ -9,18 +9,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ivory:#F6EFE4;
-    --ivory-soft:#FBF7EF;
-    --ink:#241713;
-    --ink-soft:#241713b3;
-    --wine:#5B1F3D;
-    --wine-deep:#3E1329;
-    --gold:#B98B33;
-    --gold-soft:#D8B876;
+    --ivory:#E7E5DF;
+    --ivory-soft:#F0EEE8;
+    --ink:#201E1B;
+    --ink-soft:#201E1Bb3;
+    --wine:#2C9FB5;
+    --wine-deep:#1B6B7A;
+    --gold:#57B8C9;
+    --gold-soft:#8ED2DE;
     --clay:#9C4A2E;
-    --blush:#EAD9C8;
-    --charcoal:#3A3A3A;
-    --charcoal-deep:#232323;
+    --blush:#DCEEF1;
+    --charcoal:#2C9FB5;
+    --charcoal-deep:#1B6B7A;
     --line: rgba(36,23,19,0.14);
     --shadow: 0 30px 60px -20px rgba(36,23,19,0.35);
   }
@@ -72,7 +72,7 @@
     background:url('images/prom-couple-seated-bronze.jpeg') center 20%/cover;
     padding:0 0 90px;
   }
-  .hero::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(35,35,35,0.25) 0%, rgba(58,58,58,0.25) 40%, rgba(35,35,35,0.8) 100%); }
+  .hero::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(44,159,181,0.25) 0%, rgba(27,107,122,0.3) 40%, rgba(20,54,60,0.8) 100%); }
   .hero-content{ position:relative; z-index:2; width:100%; }
   .hero .eyebrow{ color:var(--gold-soft); display:block; margin-bottom:14px; }
   .hero h1{ font-size:clamp(38px,6vw,64px); color:#fff; line-height:1.05; max-width:640px; }
@@ -251,7 +251,7 @@
       <div>
         <div class="step">
           <span class="num">01</span>
-          <div><h3>Initial Inquiry</h3><p>Send us your style inspiration, event date, dress size, and location so we can share a price estimate before booking your consultation. Reach us by Instagram DM, text at (470) 625-2909, or email at purdadesigns@gmail.com.</p></div>
+          <div><h3>Initial Inquiry</h3><p>Send us your style inspiration, event date, dress size, and location so we can share a price estimate before booking your consultation. Reach us by Instagram DM or email at purdadesigns@gmail.com.</p></div>
         </div>
         <div class="step">
           <span class="num">02</span>
@@ -407,7 +407,7 @@
       msgEl.textContent = successText;
       msgEl.style.color = "var(--wine)";
     } catch(err){
-      msgEl.textContent = "Something went wrong — please try again or text us at (470) 625-2909.";
+      msgEl.textContent = "Something went wrong — please try again or email us at purdadesigns@gmail.com.";
       msgEl.style.color = "var(--clay)";
     } finally {
       btn.disabled = false; btn.textContent = original;
