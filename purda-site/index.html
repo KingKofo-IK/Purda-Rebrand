@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purda House of Fashion — Custom Prom, Bridal & AsoEbi Dresses in Atlanta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#F6EFE4;
+    --ivory-soft:#FBF7EF;
+    --ink:#241713;
+    --ink-soft:#241713b3;
+    --wine:#5B1F3D;
+    --wine-deep:#3E1329;
+    --gold:#B98B33;
+    --gold-soft:#D8B876;
+    --clay:#9C4A2E;
+    --blush:#EAD9C8;
+    --charcoal:#3A3A3A;
+    --charcoal-deep:#232323;
+    --line: rgba(36,23,19,0.14);
+    --shadow: 0 30px 60px -20px rgba(36,23,19,0.35);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{ margin:0; font-family:'Work Sans',sans-serif; color:var(--ink); background:var(--ivory); -webkit-font-smoothing:antialiased; }
+  h1,h2,h3{ font-family:'Fraunces',serif; font-weight:500; margin:0; }
+  a{ color:inherit; text-decoration:none; }
+  img{ max-width:100%; display:block; }
+  .eyebrow{ font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold); }
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
+  section{ padding:96px 0; }
+  @media (max-width:680px){ section{ padding:64px 0; } }
+  button{ font-family:inherit; cursor:pointer; }
+
+  /* ---------- Nav ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 28px; transition:background .3s ease, box-shadow .3s ease;
+  }
+  header.scrolled{ background:rgba(246,239,228,0.94); box-shadow:0 1px 0 var(--line); backdrop-filter:blur(6px); }
+  .logo{ font-family:'Fraunces',serif; font-size:20px; color:#fff; letter-spacing:0.02em; transition:color .3s ease; }
+  header.scrolled .logo{ color:var(--wine-deep); }
+  nav{ display:flex; align-items:center; gap:30px; }
+  nav a{
+    font-size:13px; letter-spacing:0.03em; color:rgba(255,255,255,0.85); transition:color .3s ease;
+    position:relative;
+  }
+  header.scrolled nav a{ color:var(--ink-soft); }
+  nav a:hover{ color:var(--gold-soft); }
+  header.scrolled nav a:hover{ color:var(--wine); }
+  .nav-cta{
+    background:var(--gold); color:var(--wine-deep); padding:10px 22px; border-radius:999px;
+    font-size:13px; font-weight:600; letter-spacing:0.02em;
+  }
+  .menu-toggle{ display:none; background:none; border:none; color:#fff; font-size:22px; }
+  header.scrolled .menu-toggle{ color:var(--ink); }
+  @media (max-width:820px){
+    nav{ display:none; position:fixed; top:64px; left:0; right:0; background:var(--ivory-soft); flex-direction:column; align-items:flex-start; padding:20px 28px 28px; gap:16px; box-shadow:var(--shadow); }
+    nav.open{ display:flex; }
+    nav a, .nav-cta{ color:var(--ink) !important; }
+    .menu-toggle{ display:block; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; min-height:100vh; display:flex; align-items:flex-end;
+    background:url('images/prom-couple-seated-bronze.jpeg') center 20%/cover;
+    padding:0 0 90px;
+  }
+  .hero::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(35,35,35,0.25) 0%, rgba(58,58,58,0.25) 40%, rgba(35,35,35,0.8) 100%); }
+  .hero-content{ position:relative; z-index:2; width:100%; }
+  .hero .eyebrow{ color:var(--gold-soft); display:block; margin-bottom:14px; }
+  .hero h1{ font-size:clamp(38px,6vw,64px); color:#fff; line-height:1.05; max-width:640px; }
+  .hero p.lede{
+    font-family:'Fraunces',serif; font-style:italic; color:var(--blush); font-size:17px; max-width:520px;
+    margin-top:18px; line-height:1.55;
+  }
+  .hero-actions{ display:flex; flex-wrap:wrap; gap:14px; margin-top:30px; align-items:center; }
+  .btn-gold{
+    background:var(--gold); color:var(--wine-deep); border:1px solid var(--gold);
+    padding:15px 30px; border-radius:999px; font-size:14px; font-weight:600; letter-spacing:0.03em;
+    transition:background .2s ease, color .2s ease, transform .2s ease; display:inline-flex;
+  }
+  .btn-gold:hover{ background:transparent; color:var(--gold-soft); transform:translateY(-1px); }
+  .btn-outline{
+    border:1px solid rgba(255,255,255,0.6); color:#fff; padding:14px 28px; border-radius:999px;
+    font-size:13px; letter-spacing:0.03em;
+  }
+  .btn-outline:hover{ border-color:#fff; background:rgba(255,255,255,0.08); }
+  .hero .text-line{ font-size:13px; color:rgba(255,255,255,0.85); margin-top:16px; letter-spacing:0.02em; }
+  .hero .text-line strong{ color:var(--gold-soft); letter-spacing:0.05em; }
+
+  /* ---------- Strip / gallery teaser ---------- */
+  .strip-head{ text-align:center; max-width:640px; margin:0 auto 44px; }
+  .strip-head h2{ font-size:clamp(26px,4vw,38px); margin-top:8px; }
+  .strip-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+  .strip-grid a{ display:block; overflow:hidden; border-radius:2px; aspect-ratio:3/4; }
+  .strip-grid img{ width:100%; height:100%; object-fit:cover; transition:transform .5s ease; }
+  .strip-grid a:hover img{ transform:scale(1.06); }
+  @media (max-width:820px){ .strip-grid{ grid-template-columns:repeat(2,1fr); } }
+
+  /* ---------- About ---------- */
+  .about{ background:linear-gradient(135deg, var(--charcoal) 0%, var(--charcoal-deep) 100%); color:var(--ivory-soft); }
+  .about-grid{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center; }
+  @media (max-width:820px){ .about-grid{ grid-template-columns:1fr; gap:36px; } }
+  .about-img{ border-radius:2px; overflow:hidden; box-shadow:var(--shadow); }
+  .about h2{ font-size:clamp(28px,4vw,40px); color:#fff; margin-top:10px; }
+  .about p{ line-height:1.75; font-size:15.5px; color:rgba(251,247,239,0.82); margin-top:18px; }
+  .about .eyebrow{ color:var(--gold-soft); }
+
+  /* ---------- Services / How to Order ---------- */
+  .services-grid{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:start; margin-top:40px; }
+  @media (max-width:820px){ .services-grid{ grid-template-columns:1fr; } }
+  .services-img{ border-radius:2px; overflow:hidden; position:sticky; top:110px; box-shadow:var(--shadow); }
+  .step{ display:flex; gap:20px; padding:26px 0; border-top:1px solid var(--line); }
+  .step:last-child{ border-bottom:1px solid var(--line); }
+  .step .num{ font-family:'Space Mono',monospace; color:var(--gold); font-size:13px; padding-top:3px; flex-shrink:0; width:28px; }
+  .step h3{ font-size:18px; margin-bottom:6px; }
+  .step p{ font-size:14px; color:var(--ink-soft); line-height:1.65; margin:0; }
+  .note-card{
+    margin-top:28px; background:var(--blush); border-left:3px solid var(--clay); padding:18px 20px;
+    font-size:13.5px; line-height:1.65; color:var(--ink); border-radius:2px;
+  }
+
+  /* ---------- FAQ ---------- */
+  .faq{ max-width:760px; margin:40px auto 0; }
+  .faq-item{ border-bottom:1px solid var(--line); }
+  .faq-item:first-child{ border-top:1px solid var(--line); }
+  .faq-q{
+    width:100%; background:none; border:none; text-align:left; padding:22px 4px;
+    display:flex; justify-content:space-between; align-items:center; gap:20px;
+    font-family:'Fraunces',serif; font-size:17px; color:var(--ink);
+  }
+  .faq-q .plus{ font-family:'Space Mono',monospace; color:var(--gold); font-size:18px; transition:transform .25s ease; flex-shrink:0; }
+  .faq-item.open .plus{ transform:rotate(45deg); }
+  .faq-a{ max-height:0; overflow:hidden; transition:max-height .35s ease; }
+  .faq-a p{ padding:0 4px 22px; font-size:14px; color:var(--ink-soft); line-height:1.7; margin:0; }
+  .faq-a ul{ margin:0 0 22px; padding:0 4px 0 20px; font-size:14px; color:var(--ink-soft); line-height:1.8; }
+
+  /* ---------- Gallery band ---------- */
+  .gallery-band{ display:grid; grid-template-columns:repeat(5,1fr); gap:4px; }
+  .gallery-band img{ width:100%; height:220px; object-fit:cover; }
+  @media (max-width:820px){ .gallery-band{ grid-template-columns:repeat(2,1fr); } .gallery-band img{ height:160px; } }
+
+  .form-msg{ font-size:12.5px; margin-top:10px; color:var(--wine); min-height:16px; }
+
+  /* ---------- Contact ---------- */
+  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; }
+  @media (max-width:820px){ .contact-grid{ grid-template-columns:1fr; gap:40px; } }
+  .contact-info h2{ font-size:clamp(26px,4vw,36px); }
+  .contact-line{ margin-top:22px; font-size:14.5px; line-height:1.9; }
+  .contact-line strong{ display:block; font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:3px; }
+  .social-row{ display:flex; gap:16px; margin-top:30px; }
+  .social-row a{ width:38px; height:38px; border:1px solid var(--line); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; }
+  .social-row a:hover{ border-color:var(--wine); color:var(--wine); }
+  .cform .field{ margin-bottom:16px; }
+  .cform label{ display:block; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:7px; font-family:'Space Mono',monospace; }
+  .cform input, .cform textarea{ width:100%; border:1px solid var(--line); background:#fff; padding:13px 14px; font-size:14.5px; border-radius:2px; font-family:'Work Sans',sans-serif; }
+  .cform textarea{ min-height:110px; resize:vertical; }
+  .cform button{ width:100%; background:var(--wine); color:#fff; border:none; padding:15px; border-radius:2px; font-size:14px; font-weight:600; letter-spacing:0.02em; }
+  .cform button:hover{ background:var(--wine-deep); }
+
+  /* ---------- Footer ---------- */
+  footer{ background:linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal) 100%); color:rgba(251,247,239,0.75); padding:50px 0 26px; }
+  .footer-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:26px; align-items:flex-start; }
+  .footer-logo{ font-family:'Fraunces',serif; font-size:20px; color:#fff; }
+  .footer-hours{ font-size:13px; line-height:1.8; }
+  .footer-bottom{ margin-top:36px; padding-top:20px; border-top:1px solid rgba(251,247,239,0.15); font-size:12px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; color:rgba(251,247,239,0.55); }
+
+  ::selection{ background:var(--gold-soft); color:var(--wine-deep); }
+  :focus-visible{ outline:2px solid var(--wine); outline-offset:2px; }
+  @media (prefers-reduced-motion: reduce){ *{ transition:none !important; scroll-behavior:auto !important; } }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <a href="#top" class="logo">Purda</a>
+  <nav id="siteNav">
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#services">Services</a>
+    <a href="purda-consultation.html" class="nav-cta">Get A Quote</a>
+  </nav>
+  <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+</header>
+
+<div id="top"></div>
+
+<!-- HERO -->
+<section class="hero" style="padding-top:0;">
+  <div class="wrap hero-content">
+    <span class="eyebrow">Prom 2027 Bookings Open</span>
+    <h1>Purda Adepeju Designing</h1>
+    <p class="lede">Custom-made gowns for prom, AsoEbi, bridal, and birthday celebrations — designed in Atlanta and shipped nationwide.</p>
+    <div class="hero-actions">
+      <a href="purda-consultation.html" class="btn-gold">Get A Quote</a>
+      <a href="#services" class="btn-outline">How It Works</a>
+    </div>
+  </div>
+</section>
+
+<!-- CREATE ANYTHING STRIP -->
+<section>
+  <div class="wrap">
+    <div class="strip-head">
+      <span class="eyebrow">For Booking Appointments</span>
+      <h2>Create Anything</h2>
+    </div>
+    <div class="strip-grid">
+      <a href="purda-consultation.html#prom"><img src="images/prom-couple-seated-bronze.jpeg" alt="Prom couple in custom bronze beaded gown"></a>
+      <a href="purda-consultation.html#prom"><img src="images/prom-couple-car-bronze.jpeg" alt="Prom couple in custom bronze beaded gown beside car"></a>
+      <a href="purda-consultation.html#prom"><img src="images/prom-couple-water-plum.jpeg" alt="Prom couple in custom plum beaded gown"></a>
+      <a href="purda-consultation.html#prom"><img src="images/prom-couple-cybertruck-plum.jpeg" alt="Prom couple in custom plum beaded gown"></a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-img">
+      <img src="images/prom-solo-black-mercedes.jpeg" alt="Purda gown, black sequin design">
+    </div>
+    <div>
+      <span class="eyebrow">About Us</span>
+      <h2>Welcome to Purda House of Fashion</h2>
+      <p>Our story starts in Nigeria's fabric markets and sewing workshops, where hands-on apprenticeships with local artisans built a lasting respect for craft and detail. That grounding shaped everything we make today — from wedding-guest AsoEbi to prom gowns and full bridal looks.</p>
+      <p>Every piece carries that heritage forward, stitched with the same care and intention passed down through generations of skilled hands. We design inclusively, for every body and every story, because we believe personal style deserves to be celebrated rather than standardized.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES / HOW TO ORDER -->
+<section id="services">
+  <div class="wrap">
+    <div class="strip-head" style="margin-bottom:0;">
+      <span class="eyebrow">Our Services</span>
+      <h2>How To Order</h2>
+    </div>
+    <div class="services-grid">
+      <div class="services-img">
+        <img src="images/prom-couple-water-plum.jpeg" alt="Prom couple in custom plum beaded gown">
+      </div>
+      <div>
+        <div class="step">
+          <span class="num">01</span>
+          <div><h3>Initial Inquiry</h3><p>Send us your style inspiration, event date, dress size, and location so we can share a price estimate before booking your consultation. Reach us by Instagram DM, text at (470) 625-2909, or email at purdadesigns@gmail.com.</p></div>
+        </div>
+        <div class="step">
+          <span class="num">02</span>
+          <div><h3>Custom-Made, Start to Finish</h3><p>Every dress is built around your actual measurements. Production typically runs 3 weeks to 4 months; rush orders under 3 weeks carry an additional 20–35% fee.</p></div>
+        </div>
+        <div class="step">
+          <span class="num">03</span>
+          <div><h3>Consultation & Fitting</h3><p>We finalize your sketch together, guide you through accurate measurements, and — for out-of-town clients — run the consultation over video call. You'll just need a tape measure and a second pair of hands. In-person fittings are also available at our studio.</p></div>
+        </div>
+        <div class="step">
+          <span class="num">04</span>
+          <div><h3>Nationwide Shipping</h3><p>Dress prices don't include shipping. Delivery within the U.S. is a flat $25.</p></div>
+        </div>
+        <div class="note-card">
+          <strong>Please note:</strong> because many of our gowns have limited or no stretch, it's important to hold your weight steady during the sewing period — significant changes either way can affect the final fit.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background:var(--ivory-soft);">
+  <div class="wrap">
+    <div class="strip-head">
+      <span class="eyebrow">Good to Know</span>
+      <h2>Frequently Asked Questions</h2>
+    </div>
+    <div class="faq" id="faqList"></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" style="padding:0;">
+  <div class="gallery-band">
+    <img src="images/prom-solo-silver.jpeg" alt="Prom gown in silver beaded lace">
+    <img src="images/prom-couple-gold.jpeg" alt="Prom couple in custom gold beaded gown">
+    <img src="images/prom-solo-black-mercedes.jpeg" alt="Prom gown in black sequin">
+    <img src="images/prom-couple-water-plum.jpeg" alt="Prom couple in custom plum beaded gown">
+    <img src="images/prom-couple-cybertruck-plum.jpeg" alt="Prom couple in custom plum beaded gown">
+  </div>
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div class="contact-info">
+      <span class="eyebrow">Contact Us</span>
+      <h2>Let's plan your look</h2>
+      <div class="contact-line"><strong>Email</strong>purdadesigns@gmail.com</div>
+      <div class="contact-line"><strong>Studio</strong>Marietta, GA</div>
+      <div class="contact-line"><strong>Hours</strong>Monday – Saturday, 8am – 6pm</div>
+      <div class="social-row">
+        <a href="https://www.facebook.com/profile.php?id=100063919276748" aria-label="Facebook">f</a>
+        <a href="https://www.instagram.com/purda_adepeju/" aria-label="Instagram">ig</a>
+      </div>
+    </div>
+    <form class="cform" id="contactForm">
+      <div class="field"><label for="c-name">Name</label><input id="c-name" required type="text" placeholder="Your name"></div>
+      <div class="field"><label for="c-email">Email</label><input id="c-email" required type="email" placeholder="you@example.com"></div>
+      <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" required placeholder="Tell us a bit about what you're looking for"></textarea></div>
+      <button type="submit" id="contactBtn">Send Message</button>
+      <div class="form-msg" id="contactMsg"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div>
+      <div class="footer-logo">Purda</div>
+      <div class="footer-hours" style="margin-top:10px;">
+        Monday – Saturday, 8am – 6pm<br>
+        Marietta, GA
+      </div>
+    </div>
+    <div class="footer-hours">
+      <a href="#about">About</a><br><a href="#services">Services</a><br><a href="#gallery">Gallery</a><br><a href="#contact">Contact</a>
+    </div>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2026 Purda House of Fashion. All rights reserved.</span>
+    <span>Atlanta, GA · Nationwide Shipping</span>
+  </div>
+</footer>
+
+<script>
+  /* SUBMISSION SETUP: paste a free Web3Forms access key here to send
+     the contact form to your inbox. Until then, it runs
+     in demo mode (logged to console) so you can test the flow. */
+  const WEB3FORMS_ACCESS_KEY = "";
+  const NOTIFY_EMAIL = "purdadesigns@gmail.com";
+
+  // Header scroll state + mobile nav
+  const header = document.getElementById("siteHeader");
+  const nav = document.getElementById("siteNav");
+  document.getElementById("menuToggle").addEventListener("click", ()=>nav.classList.toggle("open"));
+  window.addEventListener("scroll", ()=>{
+    header.classList.toggle("scrolled", window.scrollY > 40);
+  });
+  nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>nav.classList.remove("open")));
+
+  // FAQ data + render
+  const FAQS = [
+    { q:"Are your dresses premade?", a:"No — every dress is custom-made to fit each client. Need something sooner? Call us directly and we'll see if an express order is possible." },
+    { q:"Do you offer payment plans?", a:"Yes. We accept installment payments split into 4 to 5 parts, with a 60% deposit required to begin work on the dress." },
+    { q:"Do you provide videos of the finished dress?", a:"Yes — we send a video of your completed dress so you can see and approve it before pickup or shipping." },
+    { q:"How many fittings will I need?", a:"You can pick up your dress at the first fitting if you'd like. A single fitting typically runs 2–4 hours, or 1 to 1.5 hours if it's split into two sessions." },
+    { q:"Can I request changes at my fitting?", a:"Yes, as long as the garment isn't finished yet. Changes requested after completion may carry an added charge, so sharing inspiration photos early on really helps." },
+    { q:"Do you supply the fabric?", a:"Yes — fabric, rhinestone detailing, and all other materials are provided as part of the build." },
+    { q:"What should I have ready for my video call consultation?", a:"A tape measure, well-fitted undergarments (a proper push-up bra rather than a sports bra, or a camisole/tank), close-fitting pants, and ideally the shoe height you plan to wear on the day. A soft dual-sided tape measure or a standard 60-inch sewing tape both work well." }
+  ];
+  const faqList = document.getElementById("faqList");
+  faqList.innerHTML = FAQS.map((f,i)=>`
+    <div class="faq-item" data-i="${i}">
+      <button class="faq-q" aria-expanded="false">${f.q}<span class="plus">+</span></button>
+      <div class="faq-a"><p>${f.a}</p></div>
+    </div>
+  `).join('');
+  faqList.querySelectorAll(".faq-item").forEach(item=>{
+    const btn = item.querySelector(".faq-q");
+    const a = item.querySelector(".faq-a");
+    btn.addEventListener("click", ()=>{
+      const isOpen = item.classList.contains("open");
+      faqList.querySelectorAll(".faq-item").forEach(i2=>{ i2.classList.remove("open"); i2.querySelector(".faq-a").style.maxHeight = null; i2.querySelector(".faq-q").setAttribute("aria-expanded","false"); });
+      if(!isOpen){
+        item.classList.add("open");
+        a.style.maxHeight = a.scrollHeight + "px";
+        btn.setAttribute("aria-expanded","true");
+      }
+    });
+  });
+
+  // Shared submit helper (Web3Forms, with console-log demo fallback)
+  async function sendForm(payload, subject, btn, msgEl, successText){
+    const original = btn.textContent;
+    btn.disabled = true; btn.textContent = "Sending…";
+    try{
+      if(WEB3FORMS_ACCESS_KEY){
+        const fd = new FormData();
+        fd.append("access_key", WEB3FORMS_ACCESS_KEY);
+        fd.append("subject", subject);
+        fd.append("email", NOTIFY_EMAIL);
+        Object.entries(payload).forEach(([k,v])=>fd.append(k, v || ""));
+        const res = await fetch("https://api.web3forms.com/submit", { method:"POST", body:fd });
+        const json = await res.json();
+        if(!json.success) throw new Error(json.message || "Failed");
+      } else {
+        console.log("PURDA FORM (demo mode — add a Web3Forms key to send real emails):", payload);
+        await new Promise(r=>setTimeout(r,500));
+      }
+      msgEl.textContent = successText;
+      msgEl.style.color = "var(--wine)";
+    } catch(err){
+      msgEl.textContent = "Something went wrong — please try again or text us at (470) 625-2909.";
+      msgEl.style.color = "var(--clay)";
+    } finally {
+      btn.disabled = false; btn.textContent = original;
+    }
+  }
+
+  document.getElementById("contactForm").addEventListener("submit", e=>{
+    e.preventDefault();
+    const payload = {
+      name: document.getElementById("c-name").value,
+      email: document.getElementById("c-email").value,
+      message: document.getElementById("c-msg").value
+    };
+    sendForm(payload, `New Contact Form Message — ${payload.name}`, document.getElementById("contactBtn"), document.getElementById("contactMsg"), "Thank you for your response. ✨");
+  });
+</script>
+
+</body>
+</html>
