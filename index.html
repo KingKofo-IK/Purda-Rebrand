@@ -19,6 +19,8 @@
     --gold-soft:#D8B876;
     --clay:#9C4A2E;
     --blush:#EAD9C8;
+    --charcoal:#3A3A3A;
+    --charcoal-deep:#232323;
     --line: rgba(36,23,19,0.14);
     --shadow: 0 30px 60px -20px rgba(36,23,19,0.35);
   }
@@ -70,7 +72,7 @@
     background:url('images/prom-couple-seated-bronze.jpeg') center 20%/cover;
     padding:0 0 90px;
   }
-  .hero::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(20,10,8,0.25) 0%, rgba(20,10,8,0.15) 40%, rgba(20,10,8,0.75) 100%); }
+  .hero::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(35,35,35,0.25) 0%, rgba(58,58,58,0.25) 40%, rgba(35,35,35,0.8) 100%); }
   .hero-content{ position:relative; z-index:2; width:100%; }
   .hero .eyebrow{ color:var(--gold-soft); display:block; margin-bottom:14px; }
   .hero h1{ font-size:clamp(38px,6vw,64px); color:#fff; line-height:1.05; max-width:640px; }
@@ -103,7 +105,7 @@
   @media (max-width:820px){ .strip-grid{ grid-template-columns:repeat(2,1fr); } }
 
   /* ---------- About ---------- */
-  .about{ background:var(--wine-deep); color:var(--ivory-soft); }
+  .about{ background:linear-gradient(135deg, var(--charcoal) 0%, var(--charcoal-deep) 100%); color:var(--ivory-soft); }
   .about-grid{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center; }
   @media (max-width:820px){ .about-grid{ grid-template-columns:1fr; gap:36px; } }
   .about-img{ border-radius:2px; overflow:hidden; box-shadow:var(--shadow); }
@@ -145,14 +147,6 @@
   .gallery-band img{ width:100%; height:220px; object-fit:cover; }
   @media (max-width:820px){ .gallery-band{ grid-template-columns:repeat(2,1fr); } .gallery-band img{ height:160px; } }
 
-  /* ---------- Subscribe ---------- */
-  .subscribe{ background:var(--blush); text-align:center; }
-  .subscribe h2{ font-size:clamp(24px,3.6vw,32px); }
-  .subscribe p{ color:var(--ink-soft); margin-top:10px; font-size:14px; }
-  .sub-form{ display:flex; max-width:420px; margin:26px auto 0; gap:10px; }
-  .sub-form input{ flex:1; padding:14px 16px; border:1px solid var(--line); border-radius:2px; font-size:14px; }
-  .sub-form button{ background:var(--wine); color:#fff; border:none; padding:0 26px; border-radius:2px; font-size:13px; letter-spacing:0.03em; font-weight:600; }
-  .sub-form button:hover{ background:var(--wine-deep); }
   .form-msg{ font-size:12.5px; margin-top:10px; color:var(--wine); min-height:16px; }
 
   /* ---------- Contact ---------- */
@@ -172,7 +166,7 @@
   .cform button:hover{ background:var(--wine-deep); }
 
   /* ---------- Footer ---------- */
-  footer{ background:var(--wine-deep); color:rgba(251,247,239,0.75); padding:50px 0 26px; }
+  footer{ background:linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal) 100%); color:rgba(251,247,239,0.75); padding:50px 0 26px; }
   .footer-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:26px; align-items:flex-start; }
   .footer-logo{ font-family:'Fraunces',serif; font-size:20px; color:#fff; }
   .footer-hours{ font-size:13px; line-height:1.8; }
@@ -192,7 +186,6 @@
     <a href="#contact">Contact</a>
     <a href="#gallery">Gallery</a>
     <a href="#services">Services</a>
-    <a href="#" onclick="return false;">Store</a>
     <a href="purda-consultation.html" class="nav-cta">Get A Quote</a>
   </nav>
   <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
@@ -298,24 +291,11 @@
     <img src="images/prom-solo-silver.jpeg" alt="Prom gown in silver beaded lace">
     <img src="images/prom-couple-gold.jpeg" alt="Prom couple in custom gold beaded gown">
     <img src="images/prom-solo-black-mercedes.jpeg" alt="Prom gown in black sequin">
-    <img src="https://purda.design/wp-content/uploads/2024/07/img_6618.jpg?w=400" alt="Gown detail">
-    <img src="https://purda.design/wp-content/uploads/2024/07/img_6620.jpg?w=400" alt="Gown detail">
+    <img src="images/prom-couple-water-plum.jpeg" alt="Prom couple in custom plum beaded gown">
+    <img src="images/prom-couple-cybertruck-plum.jpeg" alt="Prom couple in custom plum beaded gown">
   </div>
 </section>
 
-<!-- SUBSCRIBE -->
-<section class="subscribe">
-  <div class="wrap" style="max-width:520px;">
-    <span class="eyebrow">Stay Close</span>
-    <h2>Subscribe for booking updates</h2>
-    <p>New availability, seasonal booking windows, and behind-the-scenes fittings — straight to your inbox.</p>
-    <form class="sub-form" id="subForm">
-      <input type="email" id="subEmail" placeholder="Type your email…" required>
-      <button type="submit">Subscribe</button>
-    </form>
-    <div class="form-msg" id="subMsg"></div>
-  </div>
-</section>
 
 <!-- CONTACT -->
 <section id="contact">
@@ -323,15 +303,12 @@
     <div class="contact-info">
       <span class="eyebrow">Contact Us</span>
       <h2>Let's plan your look</h2>
-      <div class="contact-line"><strong>Text or Call</strong>(943) 259-4462</div>
-      <div class="contact-line"><strong>Text</strong>(470) 625-2909</div>
       <div class="contact-line"><strong>Email</strong>purdadesigns@gmail.com</div>
-      <div class="contact-line"><strong>Studio</strong>Oakland City, Atlanta GA</div>
+      <div class="contact-line"><strong>Studio</strong>Marietta, GA</div>
       <div class="contact-line"><strong>Hours</strong>Monday – Saturday, 8am – 6pm</div>
       <div class="social-row">
         <a href="https://www.facebook.com/profile.php?id=100063919276748" aria-label="Facebook">f</a>
         <a href="https://www.instagram.com/purda_adepeju/" aria-label="Instagram">ig</a>
-        <a href="#" aria-label="Twitter">tw</a>
       </div>
     </div>
     <form class="cform" id="contactForm">
@@ -350,8 +327,7 @@
       <div class="footer-logo">Purda</div>
       <div class="footer-hours" style="margin-top:10px;">
         Monday – Saturday, 8am – 6pm<br>
-        Oakland City, Atlanta GA<br>
-        (470) 625-2909
+        Marietta, GA
       </div>
     </div>
     <div class="footer-hours">
@@ -359,14 +335,14 @@
     </div>
   </div>
   <div class="wrap footer-bottom">
-    <span>© 2027 Purda House of Fashion. All rights reserved.</span>
+    <span>© 2026 Purda House of Fashion. All rights reserved.</span>
     <span>Atlanta, GA · Nationwide Shipping</span>
   </div>
 </footer>
 
 <script>
   /* SUBMISSION SETUP: paste a free Web3Forms access key here to send
-     the subscribe + contact forms to your inbox. Until then, both run
+     the contact form to your inbox. Until then, it runs
      in demo mode (logged to console) so you can test the flow. */
   const WEB3FORMS_ACCESS_KEY = "";
   const NOTIFY_EMAIL = "purdadesigns@gmail.com";
@@ -438,12 +414,6 @@
       btn.disabled = false; btn.textContent = original;
     }
   }
-
-  document.getElementById("subForm").addEventListener("submit", e=>{
-    e.preventDefault();
-    const email = document.getElementById("subEmail").value;
-    sendForm({ email }, "New Newsletter Subscriber", e.target.querySelector("button"), document.getElementById("subMsg"), "You're on the list — thank you!");
-  });
 
   document.getElementById("contactForm").addEventListener("submit", e=>{
     e.preventDefault();
