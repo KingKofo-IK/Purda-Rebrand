@@ -150,20 +150,12 @@
   .form-msg{ font-size:12.5px; margin-top:10px; color:var(--wine); min-height:16px; }
 
   /* ---------- Contact ---------- */
-  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; }
-  @media (max-width:820px){ .contact-grid{ grid-template-columns:1fr; gap:40px; } }
   .contact-info h2{ font-size:clamp(26px,4vw,36px); }
   .contact-line{ margin-top:22px; font-size:14.5px; line-height:1.9; }
   .contact-line strong{ display:block; font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:3px; }
   .social-row{ display:flex; gap:16px; margin-top:30px; }
   .social-row a{ width:38px; height:38px; border:1px solid var(--line); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; }
   .social-row a:hover{ border-color:var(--wine); color:var(--wine); }
-  .cform .field{ margin-bottom:16px; }
-  .cform label{ display:block; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:7px; font-family:'Space Mono',monospace; }
-  .cform input, .cform textarea{ width:100%; border:1px solid var(--line); background:#fff; padding:13px 14px; font-size:14.5px; border-radius:2px; font-family:'Work Sans',sans-serif; }
-  .cform textarea{ min-height:110px; resize:vertical; }
-  .cform button{ width:100%; background:var(--wine); color:#fff; border:none; padding:15px; border-radius:2px; font-size:14px; font-weight:600; letter-spacing:0.02em; }
-  .cform button:hover{ background:var(--wine-deep); }
 
   /* ---------- Footer ---------- */
   footer{ background:linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal) 100%); color:rgba(251,247,239,0.75); padding:50px 0 26px; }
@@ -302,24 +294,17 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="wrap contact-grid">
+  <div class="wrap" style="max-width:560px; text-align:center;">
     <div class="contact-info">
       <span class="eyebrow">Contact Us</span>
       <h2>Let's plan your look</h2>
       <div class="contact-line"><strong>Studio</strong>Marietta, GA 30067 — by appointment only</div>
       <div class="contact-line"><strong>Hours</strong>Tuesday – Saturday, 8am – 6pm</div>
-      <div class="social-row">
+      <div class="social-row" style="justify-content:center;">
         <a href="https://www.facebook.com/profile.php?id=100063919276748" aria-label="Facebook">f</a>
         <a href="https://www.instagram.com/purda_adepeju/" aria-label="Instagram">ig</a>
       </div>
     </div>
-    <form class="cform" id="contactForm">
-      <div class="field"><label for="c-name">Name</label><input id="c-name" required type="text" placeholder="Your name"></div>
-      <div class="field"><label for="c-email">Email</label><input id="c-email" required type="email" placeholder="you@example.com"></div>
-      <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" required placeholder="Tell us a bit about what you're looking for"></textarea></div>
-      <button type="submit" id="contactBtn">Send Message</button>
-      <div class="form-msg" id="contactMsg"></div>
-    </form>
   </div>
 </section>
 
@@ -344,12 +329,6 @@
 </footer>
 
 <script>
-  /* SUBMISSION SETUP: paste a free Web3Forms access key here to send
-     the contact form to your inbox. Until then, it runs
-     in demo mode (logged to console) so you can test the flow. */
-  const WEB3FORMS_ACCESS_KEY = "";
-  const NOTIFY_EMAIL = "purdadesigns@gmail.com";
-
   // Header scroll state + mobile nav
   const header = document.getElementById("siteHeader");
   const nav = document.getElementById("siteNav");
@@ -390,44 +369,6 @@
         btn.setAttribute("aria-expanded","true");
       }
     });
-  });
-
-  // Shared submit helper (Web3Forms, with console-log demo fallback)
-  async function sendForm(payload, subject, btn, msgEl, successText){
-    const original = btn.textContent;
-    btn.disabled = true; btn.textContent = "Sending…";
-    try{
-      if(WEB3FORMS_ACCESS_KEY){
-        const fd = new FormData();
-        fd.append("access_key", WEB3FORMS_ACCESS_KEY);
-        fd.append("subject", subject);
-        fd.append("email", NOTIFY_EMAIL);
-        Object.entries(payload).forEach(([k,v])=>fd.append(k, v || ""));
-        const res = await fetch("https://api.web3forms.com/submit", { method:"POST", body:fd });
-        const json = await res.json();
-        if(!json.success) throw new Error(json.message || "Failed");
-      } else {
-        console.log("PURDA FORM (demo mode — add a Web3Forms key to send real emails):", payload);
-        await new Promise(r=>setTimeout(r,500));
-      }
-      msgEl.textContent = successText;
-      msgEl.style.color = "var(--wine)";
-    } catch(err){
-      msgEl.textContent = "Something went wrong — please try again or reach out to us on Instagram.";
-      msgEl.style.color = "var(--clay)";
-    } finally {
-      btn.disabled = false; btn.textContent = original;
-    }
-  }
-
-  document.getElementById("contactForm").addEventListener("submit", e=>{
-    e.preventDefault();
-    const payload = {
-      name: document.getElementById("c-name").value,
-      email: document.getElementById("c-email").value,
-      message: document.getElementById("c-msg").value
-    };
-    sendForm(payload, `New Contact Form Message — ${payload.name}`, document.getElementById("contactBtn"), document.getElementById("contactMsg"), "Thank you for your response. ✨");
   });
 </script>
 
