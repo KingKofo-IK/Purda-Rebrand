@@ -339,7 +339,7 @@
       sub: "AsoEbi, birthdays, and one-of-a-kind occasion pieces, cut and stitched around you.",
       note: "Please fill out this form and we'll contact you to continue the process.",
       cta: "Start Custom Dress Consultation",
-      startingPrice: "Reception & Birthday Collection — Luxury Bespoke $2,100–$2,175 · High-End Custom (Corseted) $1,750–$1,813 · Core Collection $1,470–$1,523 · Standard Collection $1,330–$1,378. These are starting prices — your final price may change after your consultation.",
+      startingPrice: "Reception & Birthday Collection — Luxury Bespoke Corseted $2,100–$2,175 · High-End Custom (Corseted) $1,750–$1,813 · Core Collection $1,470–$1,523 · Standard Collection $1,330–$1,378. These are starting prices — your final price may change after your consultation.",
       // Bucket breakpoints sit exactly at Reception & Birthday's own tier
       // floors (using the low end of each tier's range):
       // Standard $1,330 · Core $1,470 · High-End $1,750 · Luxury $2,100
@@ -356,7 +356,7 @@
       { id:"name", title:"Let's start with your name.", type:"name" },
       { id:"email", title:"What's the best email to reach you?", type:"email" },
       { id:"phone", title:"And a phone number?", type:"phone" },
-      { id:"eventDate", title:"What's your deadline date?", type:"date", key:"eventDate" },
+      { id:"deadlineDate", title:"What's your deadline date?", type:"date", key:"eventDate" },
       { id:"consultation", title:"How would you like your first consultation?", type:"consultation" },
       { id:"description", title:"Describe the dress you're dreaming of.", hint:"Silhouette, fabric, color, neckline, inspiration — whatever comes to mind.", type:"textarea", key:"description" },
       { id:"photos", title:"Share up to 3 inspiration photos.", hint:"Screenshots, magazine photos, or moodboards all work.", type:"photos" },
@@ -370,7 +370,7 @@
 
   const state = {
     activeCategory: "prom",
-    wizard: { stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",eventDate:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] },
+    wizard: { stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",deadlineDate:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] },
     submitting:false
   };
 
@@ -508,7 +508,7 @@
         lastName:document.getElementById("b-last").value,
         email:document.getElementById("b-email").value,
         phone:document.getElementById("b-phone").value,
-        weddingDate:document.getElementById("b-date").value,
+        deadlineDate:document.getElementById("b-date").value,
         weddingLocation:document.getElementById("b-loc").value,
         consultation:document.getElementById("b-consult").value,
         delivery:document.getElementById("b-delivery").value,
