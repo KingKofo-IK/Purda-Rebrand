@@ -173,6 +173,9 @@
   .field textarea{ resize:vertical; min-height:100px; font-family:'Work Sans',sans-serif; }
   .field input:focus, .field select:focus, .field textarea:focus{ border-color:var(--wine); }
   .helper{ font-size:12px; color:var(--ink-soft); margin-top:7px; line-height:1.5; }
+  .consent-row{ display:flex; gap:10px; align-items:flex-start; margin-top:10px; }
+  .consent-row input[type=checkbox]{ margin-top:3px; width:16px; height:16px; flex-shrink:0; accent-color:var(--wine); }
+  .consent-row label{ font-size:12px; color:var(--ink-soft); line-height:1.5; text-transform:none; letter-spacing:normal; font-family:'Work Sans',sans-serif; margin:0; cursor:pointer; }
 
   .choice-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:4px; }
   .choice-grid.stack{ grid-template-columns:1fr; }
@@ -370,7 +373,7 @@
 
   const state = {
     activeCategory: "prom",
-    wizard: { stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",eventDate:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] },
+    wizard: { stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",smsConsent:false,eventDate:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] },
     submitting:false
   };
 
@@ -424,7 +427,10 @@
             <div class="field">
               <label for="b-phone">Phone Number *</label>
               <input id="b-phone" required type="tel" placeholder="(555) 123-4567">
-              <p class="helper">By providing your phone number, you consent to receive text messages from Purda House of Fashion related to your inquiry, consultations, and order updates. Message frequency varies. Message & data rates may apply. Reply STOP to opt out at any time. Consent is not a condition of purchase.</p>
+              <div class="consent-row">
+                <input type="checkbox" id="b-consent" required>
+                <label for="b-consent">I consent to receive text messages from Purda House of Fashion related to my inquiry, consultations, and order updates. Message frequency varies. Message &amp; data rates may apply. Reply STOP to opt out at any time, HELP for help. Consent is not a condition of purchase. See our <a href="privacy-policy.html" target="_blank">Privacy Policy</a> and <a href="terms.html" target="_blank">Terms &amp; Conditions</a>.</label>
+              </div>
             </div>
 
             <div class="section-label">Your Event</div>
@@ -496,9 +502,10 @@
       let valid = true;
       required.forEach(id=>{ const el=document.getElementById(id); if(!el.value){ valid=false; el.style.borderColor="#9C4A2E"; } });
       if(state.wizard.photos.length === 0) valid = false;
+      if(!document.getElementById("b-consent").checked) valid = false;
       const statusEl = document.getElementById("bridalStatus");
       if(!valid){
-        statusEl.textContent = "Please complete all required fields and add at least one inspiration photo.";
+        statusEl.textContent = "Please complete all required fields, check the SMS consent box, and add at least one inspiration photo.";
         statusEl.className = "status-msg error show";
         return;
       }
@@ -526,7 +533,7 @@
   function renderWizardShell(cat){
     const steps = getSteps(cat);
     if(state.wizard.category !== cat.key){
-      state.wizard = { category:cat.key, stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",eventDate:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] };
+      state.wizard = { category:cat.key, stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",smsConsent:false,eventDate:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] };
     }
     if(state.wizard.stepIndex === 0){
       renderHero(cat);
@@ -640,8 +647,12 @@
       case "phone":
         body.innerHTML = `
           <div class="field"><label for="w-phone">Phone Number</label><input id="w-phone" type="tel" value="${d.phone}" placeholder="(555) 123-4567"></div>
-          <p class="helper">By providing your phone number, you consent to receive text messages from Purda House of Fashion related to your inquiry, consultations, and order updates. Reply STOP to opt out.</p>`;
+          <div class="consent-row">
+            <input type="checkbox" id="w-consent" ${d.smsConsent ? "checked" : ""}>
+            <label for="w-consent">I consent to receive text messages from Purda House of Fashion related to my inquiry, consultations, and order updates. Message frequency varies. Message &amp; data rates may apply. Reply STOP to opt out at any time, HELP for help. Consent is not a condition of purchase. See our <a href="privacy-policy.html" target="_blank">Privacy Policy</a> and <a href="terms.html" target="_blank">Terms &amp; Conditions</a>.</label>
+          </div>`;
         document.getElementById("w-phone").addEventListener("input",e=>d.phone=e.target.value);
+        document.getElementById("w-consent").addEventListener("change",e=>d.smsConsent=e.target.checked);
         break;
       case "date":
         body.innerHTML = `<div class="field"><label for="w-date">Deadline Date</label><input id="w-date" type="date" value="${d.eventDate}"></div>`;
@@ -743,7 +754,7 @@
     switch(step.type){
       case "name": ok = d.firstName.trim() && d.lastName.trim(); msg="Please enter your first and last name."; break;
       case "email": ok = /.+@.+\..+/.test(d.email); msg="Please enter a valid email."; break;
-      case "phone": ok = d.phone.trim().length >= 7; msg="Please enter a valid phone number."; break;
+      case "phone": ok = d.phone.trim().length >= 7 && d.smsConsent; msg = d.smsConsent ? "Please enter a valid phone number." : "Please check the box to consent to text messages."; break;
       case "date": ok = !!d.eventDate; msg="Please choose your deadline date."; break;
       case "consultation": ok = !!d.consultation; msg="Please choose a consultation type."; break;
       case "photos": ok = state.wizard.photos.length > 0; msg="Please add at least one inspiration photo."; break;
@@ -881,7 +892,7 @@
     `;
     document.getElementById("restartBtn").addEventListener("click", ()=>{
       state.activeCategory = "prom";
-      state.wizard = { stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",eventDate:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] };
+      state.wizard = { stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",smsConsent:false,eventDate:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] };
       render();
     });
     bindTabs();
@@ -893,7 +904,7 @@
       btn.addEventListener("click", ()=>{
         state.activeCategory = btn.dataset.cat;
         if(CATEGORIES[state.activeCategory].layout === "steps"){
-          state.wizard = { category: state.activeCategory, stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",eventDate:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] };
+          state.wizard = { category: state.activeCategory, stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",smsConsent:false,eventDate:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] };
         }
         render();
       });
