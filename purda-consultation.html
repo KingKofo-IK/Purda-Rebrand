@@ -877,6 +877,7 @@
     btnEl.textContent = "Submitting…";
     statusEl.className = "status-msg";
 
+    let linkEligible = true;
     try{
       if(WORKER_ENDPOINT){
         const photos = await Promise.all(state.wizard.photos.map(async p => ({
@@ -890,12 +891,13 @@
         });
         const resJson = await res.json();
         if(!resJson.success) throw new Error(resJson.message || "Submission failed");
+        if(typeof resJson.linkEligible === "boolean") linkEligible = resJson.linkEligible;
       } else {
         // Demo mode — no backend URL configured yet.
         console.log("PURDA INQUIRY (demo mode — deploy /purda-backend and set WORKER_ENDPOINT):", payload, state.wizard.photos.map(p=>p.file?.name));
         await new Promise(r=>setTimeout(r, 500));
       }
-      showThankYou(CATEGORIES[catKey]);
+      showThankYou(CATEGORIES[catKey], payload, linkEligible);
     } catch(err){
       statusEl.textContent = "Something went wrong sending your inquiry. Please try again, or email us directly at purdadesigns@gmail.com.";
       statusEl.className = "status-msg error show";
@@ -906,15 +908,30 @@
     }
   }
 
-  function showThankYou(cat){
+  function showThankYou(cat, payload, linkEligible){
+    const firstName = (payload && payload.firstName) || "";
+    const bookingSection = linkEligible ? `
+      <p style="margin-top:14px;">We've received your ${cat.label} inquiry and can't wait to create with you!</p>
+      <p style="margin-top:14px;"><strong>Next step:</strong> Book your Virtual Design Consultation ($25, non-refundable) <a href="https://calendly.com/purdadesigns/virtual-design-consult-online-clients-designin-clone" target="_blank" rel="noopener" style="color:var(--wine); text-decoration:underline;">here</a>.</p>
+      <div style="text-align:left; background:var(--blush); border-left:3px solid var(--clay); padding:18px 20px; border-radius:2px; margin-top:22px; font-size:13.5px; line-height:1.7;">
+        <strong>📌 Important Booking Details:</strong>
+        <ul style="margin:10px 0 0; padding-left:20px;">
+          <li><strong>Limited Slots:</strong> Monthly booking slots fill up fast — we recommend locking in your consultation as soon as possible.</li>
+          <li><strong>Avoid Rush Fees:</strong> Events under 2 months away incur a 25%–50% rush fee (subject to availability). The earlier you book, the better!</li>
+          <li><strong>Preparation:</strong> Please have your event date, budget range, and inspiration photos ready for our 25-minute call.</li>
+        </ul>
+      </div>
+    ` : "";
+
     app.innerHTML = `
       ${wordmark(true)}
       <div class="view active">
         <div class="thankyou">
           <div>
             <span class="eyebrow" style="color:var(--wine);">Inquiry Received</span>
-            <h2>Thank you, we can't wait to create with you.</h2>
-            <button class="btn-primary" id="restartBtn">Back to Purda</button>
+            <h2>Thank you${firstName ? ", " + firstName : ""}!</h2>
+            ${bookingSection}
+            <button class="btn-primary" id="restartBtn" style="margin-top:26px;">Back to Purda</button>
           </div>
         </div>
       </div>
