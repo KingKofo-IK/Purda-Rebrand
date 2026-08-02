@@ -13,14 +13,14 @@
     --ivory-soft:#F0EEE8;
     --ink:#201E1B;
     --ink-soft:#201E1Bb3;
-    --wine:#2C9FB5;
-    --wine-deep:#1B6B7A;
-    --gold:#57B8C9;
-    --gold-soft:#8ED2DE;
+    --wine:#3A3A3A;
+    --wine-deep:#232323;
+    --gold:#5A5A5A;
+    --gold-soft:#8A8A8A;
     --clay:#9C4A2E;
-    --blush:#DCEEF1;
-    --charcoal:#2C9FB5;
-    --charcoal-deep:#1B6B7A;
+    --blush:#E2E0DA;
+    --charcoal:#3A3A3A;
+    --charcoal-deep:#232323;
     --line: rgba(36,23,19,0.14);
     --shadow: 0 30px 60px -20px rgba(36,23,19,0.35);
   }
@@ -43,8 +43,8 @@
     padding:18px 28px; transition:background .3s ease, box-shadow .3s ease;
   }
   header.scrolled{ background:rgba(246,239,228,0.94); box-shadow:0 1px 0 var(--line); backdrop-filter:blur(6px); }
-  .logo{ font-family:'Fraunces',serif; font-size:20px; color:#fff; letter-spacing:0.02em; transition:color .3s ease; }
-  header.scrolled .logo{ color:var(--wine-deep); }
+  .logo{ display:flex; align-items:center; }
+  .logo img{ height:44px; width:auto; display:block; }
   nav{ display:flex; align-items:center; gap:30px; }
   nav a{
     font-size:13px; letter-spacing:0.03em; color:rgba(255,255,255,0.85); transition:color .3s ease;
@@ -69,10 +69,10 @@
   /* ---------- Hero ---------- */
   .hero{
     position:relative; min-height:100vh; display:flex; align-items:flex-end;
-    background:url('images/prom-couple-seated-bronze.jpeg') center 20%/cover;
+    background:url('images/prom-couple-plum-waterfall.jpeg') center 20%/cover;
     padding:0 0 90px;
   }
-  .hero::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(44,159,181,0.25) 0%, rgba(27,107,122,0.3) 40%, rgba(20,54,60,0.8) 100%); }
+  .hero::before{ content:""; position:absolute; inset:0; background:linear-gradient(180deg, rgba(35,35,35,0.25) 0%, rgba(58,58,58,0.25) 40%, rgba(35,35,35,0.8) 100%); }
   .hero-content{ position:relative; z-index:2; width:100%; }
   .hero .eyebrow{ color:var(--gold-soft); display:block; margin-bottom:14px; }
   .hero h1{ font-size:clamp(38px,6vw,64px); color:#fff; line-height:1.05; max-width:640px; }
@@ -115,7 +115,7 @@
 
   /* ---------- Services / How to Order ---------- */
   .services-grid{ display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:start; margin-top:40px; }
-  @media (max-width:820px){ .services-grid{ grid-template-columns:1fr; } }
+  @media (max-width:820px){ .services-grid{ grid-template-columns:1fr; } .services-img{ position:static; top:auto; } }
   .services-img{ border-radius:2px; overflow:hidden; position:sticky; top:110px; box-shadow:var(--shadow); }
   .step{ display:flex; gap:20px; padding:26px 0; border-top:1px solid var(--line); }
   .step:last-child{ border-bottom:1px solid var(--line); }
@@ -150,20 +150,12 @@
   .form-msg{ font-size:12.5px; margin-top:10px; color:var(--wine); min-height:16px; }
 
   /* ---------- Contact ---------- */
-  .contact-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; }
-  @media (max-width:820px){ .contact-grid{ grid-template-columns:1fr; gap:40px; } }
   .contact-info h2{ font-size:clamp(26px,4vw,36px); }
   .contact-line{ margin-top:22px; font-size:14.5px; line-height:1.9; }
   .contact-line strong{ display:block; font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:3px; }
   .social-row{ display:flex; gap:16px; margin-top:30px; }
   .social-row a{ width:38px; height:38px; border:1px solid var(--line); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:13px; }
   .social-row a:hover{ border-color:var(--wine); color:var(--wine); }
-  .cform .field{ margin-bottom:16px; }
-  .cform label{ display:block; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:7px; font-family:'Space Mono',monospace; }
-  .cform input, .cform textarea{ width:100%; border:1px solid var(--line); background:#fff; padding:13px 14px; font-size:14.5px; border-radius:2px; font-family:'Work Sans',sans-serif; }
-  .cform textarea{ min-height:110px; resize:vertical; }
-  .cform button{ width:100%; background:var(--wine); color:#fff; border:none; padding:15px; border-radius:2px; font-size:14px; font-weight:600; letter-spacing:0.02em; }
-  .cform button:hover{ background:var(--wine-deep); }
 
   /* ---------- Footer ---------- */
   footer{ background:linear-gradient(135deg, var(--charcoal-deep) 0%, var(--charcoal) 100%); color:rgba(251,247,239,0.75); padding:50px 0 26px; }
@@ -180,7 +172,7 @@
 <body>
 
 <header id="siteHeader">
-  <a href="#top" class="logo">Purda</a>
+  <a href="#top" class="logo"><img src="images/purda-logo.png" alt="Purda House of Fashion"></a>
   <nav id="siteNav">
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
@@ -214,10 +206,14 @@
       <h2>Create Anything</h2>
     </div>
     <div class="strip-grid">
-      <a href="purda-consultation.html#prom"><img src="images/prom-couple-seated-bronze.jpeg" alt="Prom couple in custom bronze beaded gown"></a>
-      <a href="purda-consultation.html#prom"><img src="images/prom-couple-car-bronze.jpeg" alt="Prom couple in custom bronze beaded gown beside car"></a>
-      <a href="purda-consultation.html#prom"><img src="images/prom-couple-water-plum.jpeg" alt="Prom couple in custom plum beaded gown"></a>
-      <a href="purda-consultation.html#prom"><img src="images/prom-couple-cybertruck-plum.jpeg" alt="Prom couple in custom plum beaded gown"></a>
+      <a href="purda-consultation.html#prom"><img src="images/prom-couple-silver-gwagon.jpeg" alt="Prom couple in custom silver beaded gown beside SUV"></a>
+      <a href="purda-consultation.html#prom"><img src="images/prom-solo-silver-mustang.jpeg" alt="Prom look in custom silver sequin gown beside classic car"></a>
+      <a href="purda-consultation.html#prom"><img src="images/prom-solo-lavender-fountain.jpeg" alt="Prom gown in custom lavender beaded silhouette"></a>
+      <a href="purda-consultation.html#prom"><img src="images/prom-solo-silver-lobby.jpeg" alt="Prom gown in custom silver lace and crystal"></a>
+      <a href="purda-consultation.html#prom"><img src="images/prom-couple-burgundy-steps.jpeg" alt="Prom couple in custom burgundy beaded gown"></a>
+      <a href="purda-consultation.html#prom"><img src="images/prom-solo-silver-pearls-night.jpeg" alt="Prom gown in custom silver beaded design with pearl draping"></a>
+      <a href="purda-consultation.html#prom"><img src="images/prom-couple-bronze-whitecar.jpeg" alt="Prom couple in custom bronze beaded gown beside car"></a>
+      <a href="purda-consultation.html#prom"><img src="images/prom-solo-green-bentley.png" alt="Prom look in custom emerald beaded gown"></a>
     </div>
   </div>
 </section>
@@ -251,19 +247,19 @@
       <div>
         <div class="step">
           <span class="num">01</span>
-          <div><h3>Initial Inquiry</h3><p>Send us your style inspiration, event date, dress size, and location so we can share a price estimate before booking your consultation. Reach us by Instagram DM or email at purdadesigns@gmail.com.</p></div>
+          <div><h3>Initial Inquiry</h3><p>Send us your style inspiration, event date, dress size, and location through our consultation form or Instagram DM. You'll receive an email with a link to book your Virtual Design Consultation.</p></div>
         </div>
         <div class="step">
           <span class="num">02</span>
-          <div><h3>Custom-Made, Start to Finish</h3><p>Every dress is built around your actual measurements. Production typically runs 3 weeks to 4 months; rush orders under 3 weeks carry an additional 20–35% fee.</p></div>
+          <div><h3>Custom-Made, Start to Finish</h3><p>Every dress is built around your actual measurements, with production scheduled around your event date and the complexity of your design. Need it sooner? Rush production may be available for an additional 20–35% fee — just let us know your deadline when you reach out.</p></div>
         </div>
         <div class="step">
           <span class="num">03</span>
-          <div><h3>Consultation & Fitting</h3><p>We finalize your sketch together, guide you through accurate measurements, and — for out-of-town clients — run the consultation over video call. You'll just need a tape measure and a second pair of hands. In-person fittings are also available at our studio.</p></div>
+          <div><h3>Consultation & Fitting</h3><p>Your Virtual Design Consultation is $25 (non-refundable) and covers a 25-minute call about your design vision, materials, timeline, and budget — a mutual-fit conversation that doesn't guarantee a booking. If you move forward, a separate $50 booking fee applies when your pricing tier is assigned — this one is credited toward your final dress total. For out-of-town clients, consultations run over video call; you'll just need a tape measure and a second pair of hands. In-person consultations and fittings are also available at our studio by appointment.</p></div>
         </div>
         <div class="step">
           <span class="num">04</span>
-          <div><h3>Nationwide Shipping</h3><p>Dress prices don't include shipping. Delivery within the U.S. is a flat $25.</p></div>
+          <div><h3>Nationwide Shipping</h3><p>Standard shipping within the U.S. is free. If you'd like overnight or rush shipping, those charges are covered by the client.</p></div>
         </div>
         <div class="note-card">
           <strong>Please note:</strong> because many of our gowns have limited or no stretch, it's important to hold your weight steady during the sewing period — significant changes either way can affect the final fit.
@@ -298,35 +294,28 @@
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="wrap contact-grid">
+  <div class="wrap" style="max-width:560px; text-align:center;">
     <div class="contact-info">
       <span class="eyebrow">Contact Us</span>
       <h2>Let's plan your look</h2>
-      <div class="contact-line"><strong>Email</strong>purdadesigns@gmail.com</div>
-      <div class="contact-line"><strong>Studio</strong>Marietta, GA</div>
-      <div class="contact-line"><strong>Hours</strong>Monday – Saturday, 8am – 6pm</div>
-      <div class="social-row">
+      <div class="contact-line"><strong>Studio</strong>Marietta, GA 30067 — by appointment only</div>
+      <div class="contact-line"><strong>Hours</strong>Tuesday – Saturday, 8am – 6pm</div>
+      <div class="social-row" style="justify-content:center;">
         <a href="https://www.facebook.com/profile.php?id=100063919276748" aria-label="Facebook">f</a>
         <a href="https://www.instagram.com/purda_adepeju/" aria-label="Instagram">ig</a>
       </div>
     </div>
-    <form class="cform" id="contactForm">
-      <div class="field"><label for="c-name">Name</label><input id="c-name" required type="text" placeholder="Your name"></div>
-      <div class="field"><label for="c-email">Email</label><input id="c-email" required type="email" placeholder="you@example.com"></div>
-      <div class="field"><label for="c-msg">Message</label><textarea id="c-msg" required placeholder="Tell us a bit about what you're looking for"></textarea></div>
-      <button type="submit" id="contactBtn">Send Message</button>
-      <div class="form-msg" id="contactMsg"></div>
-    </form>
   </div>
 </section>
 
 <footer>
   <div class="wrap footer-grid">
     <div>
-      <div class="footer-logo">Purda</div>
+      <div class="footer-logo"><img src="images/purda-logo.png" alt="Purda House of Fashion" style="height:40px;width:auto;"></div>
       <div class="footer-hours" style="margin-top:10px;">
-        Monday – Saturday, 8am – 6pm<br>
-        Marietta, GA
+        Tuesday – Saturday, 8am – 6pm<br>
+        Marietta, GA 30067<br>
+        By appointment only
       </div>
     </div>
     <div class="footer-hours">
@@ -335,17 +324,11 @@
   </div>
   <div class="wrap footer-bottom">
     <span>© 2026 Purda House of Fashion. All rights reserved.</span>
-    <span>Atlanta, GA · Nationwide Shipping</span>
+    <span><a href="privacy-policy.html">Privacy Policy</a> · <a href="terms.html">Terms &amp; Conditions</a></span>
   </div>
 </footer>
 
 <script>
-  /* SUBMISSION SETUP: paste a free Web3Forms access key here to send
-     the contact form to your inbox. Until then, it runs
-     in demo mode (logged to console) so you can test the flow. */
-  const WEB3FORMS_ACCESS_KEY = "";
-  const NOTIFY_EMAIL = "purdadesigns@gmail.com";
-
   // Header scroll state + mobile nav
   const header = document.getElementById("siteHeader");
   const nav = document.getElementById("siteNav");
@@ -357,6 +340,8 @@
 
   // FAQ data + render
   const FAQS = [
+    { q:"Is the consultation free?", a:"Our Virtual Design Consultation is $25 (non-refundable) and reserves your dedicated appointment slot — it's a 25-minute call covering your design vision, materials, timeline, and budget, and a mutual-fit conversation that doesn't guarantee a booking. If you move forward, a separate $50 booking fee applies when your pricing tier is assigned, and that one is credited toward your final dress total." },
+    { q:"How does pricing work?", a:"Every piece is priced by tier — Luxury Bespoke, High-End Custom, Core Collection, or Standard Collection — assigned at booking based on design complexity, fabric, and construction time. Pricing includes your fitting appointment and standard alterations. Prom & Gala starts from $1,900, Bridal Couture from $2,375, and Reception & Birthday pieces from $1,330. These are starting prices — your final price may change after your consultation." },
     { q:"Are your dresses premade?", a:"No — every dress is custom-made to fit each client. Need something sooner? Call us directly and we'll see if an express order is possible." },
     { q:"Do you offer payment plans?", a:"Yes. We accept installment payments split into 4 to 5 parts, with a 60% deposit required to begin work on the dress." },
     { q:"Do you provide videos of the finished dress?", a:"Yes — we send a video of your completed dress so you can see and approve it before pickup or shipping." },
@@ -384,44 +369,6 @@
         btn.setAttribute("aria-expanded","true");
       }
     });
-  });
-
-  // Shared submit helper (Web3Forms, with console-log demo fallback)
-  async function sendForm(payload, subject, btn, msgEl, successText){
-    const original = btn.textContent;
-    btn.disabled = true; btn.textContent = "Sending…";
-    try{
-      if(WEB3FORMS_ACCESS_KEY){
-        const fd = new FormData();
-        fd.append("access_key", WEB3FORMS_ACCESS_KEY);
-        fd.append("subject", subject);
-        fd.append("email", NOTIFY_EMAIL);
-        Object.entries(payload).forEach(([k,v])=>fd.append(k, v || ""));
-        const res = await fetch("https://api.web3forms.com/submit", { method:"POST", body:fd });
-        const json = await res.json();
-        if(!json.success) throw new Error(json.message || "Failed");
-      } else {
-        console.log("PURDA FORM (demo mode — add a Web3Forms key to send real emails):", payload);
-        await new Promise(r=>setTimeout(r,500));
-      }
-      msgEl.textContent = successText;
-      msgEl.style.color = "var(--wine)";
-    } catch(err){
-      msgEl.textContent = "Something went wrong — please try again or email us at purdadesigns@gmail.com.";
-      msgEl.style.color = "var(--clay)";
-    } finally {
-      btn.disabled = false; btn.textContent = original;
-    }
-  }
-
-  document.getElementById("contactForm").addEventListener("submit", e=>{
-    e.preventDefault();
-    const payload = {
-      name: document.getElementById("c-name").value,
-      email: document.getElementById("c-email").value,
-      message: document.getElementById("c-msg").value
-    };
-    sendForm(payload, `New Contact Form Message — ${payload.name}`, document.getElementById("contactBtn"), document.getElementById("contactMsg"), "Thank you for your response. ✨");
   });
 </script>
 
