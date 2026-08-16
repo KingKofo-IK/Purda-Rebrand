@@ -371,6 +371,7 @@
       title: "Create Anything You Can Imagine",
       sub: "AsoEbi, birthdays, and one-of-a-kind occasion pieces, cut and stitched around you.",
       note: "Please fill out this form and we'll contact you to continue the process.",
+      disclaimer: "If your event is Prom, this quote does not apply to you — please book through the regular Prom inquiry form instead. Prom garments are priced at the Prom rate, not the Custom rate.",
       cta: "Start Custom Dress Consultation",
       startingPrice: "Bridal reception outfit or Birthday outfit collection — Luxury Bespoke corseted $2,100–$2,175 · High-End Custom (Corseted) $1,750–$1,813 · Core Collection $1,470–$1,523 · Standard Collection $1,330–$1,378. These are starting prices — your final price may change after your consultation.",
       // Bucket breakpoints sit exactly at Reception & Birthday's own tier
@@ -582,6 +583,7 @@
             <h1>${cat.title}</h1>
             <p class="sub">${cat.sub}</p>
             ${cat.note ? `<p class="note">${cat.note}</p>` : ''}
+            ${cat.disclaimer ? `<div style="text-align:left; background:rgba(156,74,46,0.16); border:1px solid var(--clay); border-radius:2px; padding:14px 18px; margin-top:18px; max-width:520px; font-size:13px; line-height:1.6; color:#fff;"><strong>⚠️ Please note:</strong> ${cat.disclaimer}</div>` : ''}
             <button class="btn-primary" id="beginBtn">${cat.cta || "Begin Consultation"}</button>
             <span class="takes">Takes about 2 minutes</span>
           </div>
@@ -722,6 +724,7 @@
       case "budget":
         body.innerHTML = `
           <p class="helper" style="margin-bottom:14px;">${cat.startingPrice}</p>
+          ${cat.disclaimer ? `<div style="text-align:left; background:var(--blush); border-left:3px solid var(--clay); padding:12px 16px; border-radius:2px; margin-bottom:16px; font-size:13px; line-height:1.6; color:var(--ink);"><strong>⚠️ Please note:</strong> ${cat.disclaimer}</div>` : ''}
           <div class="choice-grid">
             ${cat.budgetOptions.map(o=>`<button type="button" class="choice" data-val="${o}"><strong>${o}</strong></button>`).join('')}
           </div>`;
@@ -926,6 +929,7 @@
             <li><strong>Preparation:</strong> Please have your event date, budget range, and inspiration photos ready for our 25-minute call.</li>
             <li><strong>Payment:</strong> We do not accept Apple Card or Cash App Card as payment.</li>
             <li><strong>Design References:</strong> We do not do AI designs — unless an actual full real image of the design is attached. We do not accept AI-generated sketches.</li>
+            ${cat.disclaimer ? `<li><strong>Please Note:</strong> ${cat.disclaimer}</li>` : ''}
           </ul>
         </div>
       `;
