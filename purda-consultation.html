@@ -391,6 +391,7 @@
       { id:"email", title:"What's the best email to reach you?", type:"email" },
       { id:"phone", title:"And a phone number?", type:"phone" },
       { id:"eventDate", title:"What's your deadline date?", type:"date", key:"eventDate" },
+      { id:"location", title:"Where's your event?", hint:"City, State or venue name.", type:"location", key:"location" },
       { id:"consultation", title:"How would you like your first consultation?", type:"consultation" },
       { id:"description", title:"Describe the dress you're dreaming of.", hint:"Silhouette, fabric, color, neckline, inspiration — whatever comes to mind.", type:"textarea", key:"description" },
       { id:"photos", title:"Share up to 3 inspiration photos.", hint:"Screenshots, magazine photos, or moodboards all work.", type:"photos" },
@@ -404,7 +405,7 @@
 
   const state = {
     activeCategory: "prom",
-    wizard: { stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",smsConsent:false,eventDate:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] },
+    wizard: { stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",smsConsent:false,eventDate:"",location:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] },
     submitting:false
   };
 
@@ -564,7 +565,7 @@
   function renderWizardShell(cat){
     const steps = getSteps(cat);
     if(state.wizard.category !== cat.key){
-      state.wizard = { category:cat.key, stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",smsConsent:false,eventDate:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] };
+      state.wizard = { category:cat.key, stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",smsConsent:false,eventDate:"",location:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] };
     }
     if(state.wizard.stepIndex === 0){
       renderHero(cat);
@@ -690,6 +691,10 @@
         body.innerHTML = `<div class="field"><label for="w-date">Deadline Date</label><input id="w-date" type="date" value="${d.eventDate}"></div>`;
         document.getElementById("w-date").addEventListener("input",e=>d.eventDate=e.target.value);
         break;
+      case "location":
+        body.innerHTML = `<div class="field"><input id="w-location" type="text" value="${d.location}" placeholder="City, State or venue name"></div>`;
+        document.getElementById("w-location").addEventListener("input",e=>d.location=e.target.value);
+        break;
       case "consultation":
         body.innerHTML = `
           <div class="choice-grid stack">
@@ -757,6 +762,7 @@
             <li><span class="k">Email</span><span class="v">${d.email}</span></li>
             <li><span class="k">Phone</span><span class="v">${d.phone}</span></li>
             <li><span class="k">Deadline Date</span><span class="v">${d.eventDate}</span></li>
+            <li><span class="k">Location</span><span class="v">${d.location}</span></li>
             <li><span class="k">Consultation</span><span class="v">${d.consultation}</span></li>
             <li><span class="k">Description</span><span class="v">${d.description || '—'}</span></li>
             <li><span class="k">Photos</span><span class="v">${photosLabel}</span></li>
@@ -789,6 +795,7 @@
       case "email": ok = /.+@.+\..+/.test(d.email); msg="Please enter a valid email."; break;
       case "phone": ok = d.phone.trim().length >= 7 && d.smsConsent; msg = d.smsConsent ? "Please enter a valid phone number." : "Please check the box to consent to text messages."; break;
       case "date": ok = !!d.eventDate; msg="Please choose your deadline date."; break;
+      case "location": ok = d.location.trim().length > 0; msg="Please enter your event location."; break;
       case "consultation": ok = !!d.consultation; msg="Please choose a consultation type."; break;
       case "photos": ok = state.wizard.photos.length > 0; msg="Please add at least one inspiration photo."; break;
       case "size": ok = d.size.trim().length > 0; msg="Please enter your size."; break;
@@ -865,7 +872,7 @@
     const payload = {
       category: cat.label,
       firstName:d.firstName, lastName:d.lastName, email:d.email, phone:d.phone,
-      eventDate:d.eventDate, consultation:d.consultation, description:d.description,
+      eventDate:d.eventDate, location:d.location, consultation:d.consultation, description:d.description,
       delivery:d.delivery,
       size:d.size, budget:d.budget, source:d.source
     };
@@ -964,7 +971,7 @@
     `;
     document.getElementById("restartBtn").addEventListener("click", ()=>{
       state.activeCategory = "prom";
-      state.wizard = { stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",smsConsent:false,eventDate:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] };
+      state.wizard = { stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",smsConsent:false,eventDate:"",location:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] };
       render();
     });
     bindTabs();
@@ -976,7 +983,7 @@
       btn.addEventListener("click", ()=>{
         state.activeCategory = btn.dataset.cat;
         if(CATEGORIES[state.activeCategory].layout === "steps"){
-          state.wizard = { category: state.activeCategory, stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",smsConsent:false,eventDate:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] };
+          state.wizard = { category: state.activeCategory, stepIndex:0, data:{ firstName:"",lastName:"",email:"",phone:"",smsConsent:false,eventDate:"",location:"",consultation:"",description:"",size:"",budget:"",delivery:"",source:"" }, photos:[] };
         }
         render();
       });
